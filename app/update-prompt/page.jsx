@@ -2,8 +2,9 @@
 import Form from "@components/Form";
 import {useEffect, useState} from "react";
 import {useRouter, useSearchParams} from "next/navigation"
+import {Suspense} from 'react'
 
-const UpdatePrompt = () => {
+function UpdateComp() {
     const [submitting, setSubmitting] = useState(false)
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -14,12 +15,12 @@ const UpdatePrompt = () => {
     })
 
     useEffect(() => {
-        const getPromptData = async ()=>{
+        const getPromptData = async () => {
             const response = await fetch(`/api/prompt/${promptId}`)
             const result = await response.json()
             setPost({
                 prompt: result.prompt,
-                tag:result.tag
+                tag: result.tag
             })
         }
         if (promptId) getPromptData();
@@ -54,5 +55,13 @@ const UpdatePrompt = () => {
             handleSubmit={updatePrompt}
         />
     );
+}
+
+const UpdatePrompt = () => {
+    return (
+        <Suspense>
+            <UpdateComp/>
+        </Suspense>
+    )
 };
 export default UpdatePrompt;

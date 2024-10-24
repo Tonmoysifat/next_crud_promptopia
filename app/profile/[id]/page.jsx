@@ -1,10 +1,10 @@
 "use client"
 
 import Profile from "@components/Profile";
-import {useEffect, useState} from "react";
+import {Suspense, useEffect, useState} from "react";
 import {useSearchParams} from "next/navigation";
 
-const UserProfile = ({params}) => {
+function OtherUserPro ({params}){
     const [allPosts, setAllPosts] = useState([])
     const searchParams = useSearchParams()
     const username = searchParams.get("name")
@@ -24,6 +24,13 @@ const UserProfile = ({params}) => {
             data={allPosts}
         />
     );
+}
+const UserProfile = ({params}) => {
+    return(
+        <Suspense>
+            <OtherUserPro params={params}/>
+        </Suspense>
+    )
 };
 
 export default UserProfile;
