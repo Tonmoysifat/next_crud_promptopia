@@ -4,7 +4,7 @@ import Profile from "@components/Profile";
 import {useEffect, useState} from "react";
 import {useSearchParams} from "next/navigation";
 
-const userProfile = ({params}) => {
+const UserProfile = ({params}) => {
     const [allPosts, setAllPosts] = useState([])
     const searchParams = useSearchParams()
     const username = searchParams.get("name")
@@ -26,4 +26,4 @@ const userProfile = ({params}) => {
     );
 };
 
-export default userProfile;
+export default UserProfile;
