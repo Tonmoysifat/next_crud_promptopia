@@ -27,7 +27,7 @@ const Feed = () => {
     }
     useEffect(() => {
         fetchAllPosts()
-    }, []);
+    }, [allPosts]);
 
     const filterPrompts = (searchItem) => {
         const regex = new RegExp(searchItem, "i")
